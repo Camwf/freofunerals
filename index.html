@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fremantle Life Ceremonies | Modern Weddings, Farewells & Celebrations</title>
+  
+  <!-- Google Fonts: Bricolage Grotesque & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandYellow: '#ecc852',
+            brandPink: '#ef6fa5',
+            brandBlue: '#4055ea',
+            brandGreen: '#4dcc95',
+            brandOrange: '#ea8044',
+            brandDark: '#14121f',
+            brandCream: '#faf9f5',
+            brandLavender: '#9aaaf4'
+          },
+          fontFamily: {
+            heading: ['"Bricolage Grotesque"', 'sans-serif'],
+            body: ['"DM Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'brutal': '4px 4px 0px #14121f',
+            'brutal-lg': '6px 6px 0px #14121f',
+            'brutal-xl': '8px 8px 0px #14121f',
+            'brutal-hover': '2px 2px 0px #14121f',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Neo-Brutalist & Fluid Style Tweaks */
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #faf9f5;
+      color: #14121f;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      letter-spacing: -0.025em;
+    }
+
+    .border-brutal {
+      border: 3px solid #14121f;
+    }
+
+    .border-brutal-b {
+      border-bottom: 3px solid #14121f;
+    }
+
+    .border-brutal-t {
+      border-top: 3px solid #14121f;
+    }
+
+    /* Infinite scrolling ticker */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 25s linear infinite;
+    }
+
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* Modal transition */
+    .modal-backdrop {
+      background-color: rgba(20, 18, 31, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Custom form elements */
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px #ef6fa5;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-brandPink selection:text-brandDark">
+
+  <!-- Header / Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-brandYellow border-brutal-b">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="w-3.5 h-3.5 rounded-full bg-brandPink border-2 border-brandDark transition-transform group-hover:scale-125"></span>
+        <span class="font-heading font-extrabold text-xl sm:text-2xl tracking-tight text-brandDark">
+          Fremantle Life Ceremonies
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#celebrations" class="font-bold text-sm hover:underline hover:text-brandBlue transition-colors">Celebrations</a>
+        <a href="#farewells" class="font-bold text-sm hover:underline hover:text-brandBlue transition-colors">Farewells</a>
+        <a href="#estimator" class="font-bold text-sm hover:underline hover:text-brandBlue transition-colors">Vibe Calculator</a>
+        <a href="#about" class="font-bold text-sm hover:underline hover:text-brandBlue transition-colors">About Us</a>
+        <a href="#clarity" class="font-bold text-sm hover:underline hover:text-brandBlue transition-colors">Funeral Clarity</a>
+        <a href="#contact" class="bg-brandDark text-brandYellow px-5 py-2.5 rounded-full font-bold text-sm hover:bg-brandBlue hover:text-white transition-all shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 border-brutal">
+          Let's Talk
+        </a>
+      </nav>
+
+      <!-- Mobile Actions -->
+      <div class="flex items-center gap-2.5 md:hidden">
+        <a href="#contact" class="bg-brandDark text-brandYellow px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-brutal">
+          Let's Talk
+        </a>
+        <button id="menuToggle" aria-label="Toggle mobile menu" class="w-11 h-11 rounded-full border-brutal bg-white flex items-center justify-center hover:bg-brandCream active:scale-95 transition-all">
+          <svg id="menuIcon" class="w-5 h-5 text-brandDark" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden bg-brandYellow border-brutal-t px-6 py-6 transition-all duration-300">
+      <div class="flex flex-col gap-4 font-heading font-extrabold text-2xl">
+        <a href="#celebrations" onclick="toggleDrawer()" class="hover:text-brandPink transition-colors">Celebrations</a>
+        <a href="#farewells" onclick="toggleDrawer()" class="hover:text-brandBlue transition-colors">Farewells</a>
+        <a href="#estimator" onclick="toggleDrawer()" class="hover:text-brandOrange transition-colors">Vibe & Cost Estimator</a>
+        <a href="#about" onclick="toggleDrawer()" class="hover:text-brandGreen transition-colors">About Alison & Cam</a>
+        <a href="#clarity" onclick="toggleDrawer()" class="hover:text-brandDark transition-colors">Funeral Clarity</a>
+        <a href="#contact" onclick="toggleDrawer()" class="bg-brandDark text-brandYellow text-center py-3 rounded-full text-lg mt-2 border-brutal shadow-brutal">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="bg-brandYellow border-brutal-b pt-10 pb-16 lg:py-20 overflow-hidden relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-7 z-10">
+            <div class="inline-flex items-center gap-2 bg-brandCream border-brutal px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-5 shadow-brutal">
+              <span>📍 Fremantle & Greater Perth, WA</span>
+            </div>
+            <h1 class="font-heading font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-brandDark mb-6">
+              Your life.<br>
+              Your rules.<br>
+              <span class="text-brandBlue underline decoration-brandPink decoration-wavy decoration-2">Your send-off.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-brandDark/90 max-w-xl font-normal leading-relaxed mb-8">
+              Weddings, funerals, living wakes and everything in between. Real ceremonies for real people with <strong>no beige, no scripts, and no stuffy rules</strong>.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3.5 max-w-md">
+              <a href="#celebrations" class="bg-brandPink text-brandDark text-center font-bold text-base sm:text-lg px-7 py-3.5 rounded-full border-brutal shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                Plan a Celebration
+              </a>
+              <a href="#farewells" class="bg-brandBlue text-white text-center font-bold text-base sm:text-lg px-7 py-3.5 rounded-full border-brutal shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+                Plan a Farewell
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Graphic / Abstract Geometry -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative w-full max-w-[360px] h-[330px] sm:h-[360px]">
+              <!-- Pink Arch -->
+              <div class="absolute left-2 top-6 w-44 h-64 bg-brandPink border-brutal rounded-t-[100px] rounded-b-2xl shadow-brutal flex flex-col justify-end p-4 transition-transform hover:-rotate-2">
+                <span class="font-heading font-extrabold text-white text-lg leading-tight">Authentic Moments</span>
+              </div>
+              <!-- Green Circle -->
+              <div class="absolute right-2 top-0 w-36 h-36 bg-brandGreen border-brutal rounded-full shadow-brutal flex items-center justify-center p-3 text-center transition-transform hover:rotate-6">
+                <span class="font-heading font-extrabold text-brandDark text-sm">100% Zero Beige</span>
+              </div>
+              <!-- Blue Pill -->
+              <div class="absolute right-0 bottom-2 w-52 h-40 bg-brandBlue border-brutal rounded-tl-2xl rounded-tr-2xl rounded-br-[70px] rounded-bl-2xl shadow-brutal flex flex-col justify-between p-4 text-white transition-transform hover:scale-105">
+                <span class="text-xs uppercase font-bold tracking-widest text-brandYellow">Freo Native</span>
+                <span class="font-heading font-bold text-sm">Backyards, beaches, warehouses & pubs.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Tag Ticker -->
+    <div class="bg-brandDark border-brutal-b py-4 overflow-hidden">
+      <div class="animate-marquee">
+        <div class="flex gap-3 shrink-0 items-center pr-3">
+          <span class="bg-brandOrange text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Elopements</span>
+          <span class="bg-brandGreen text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Living Wakes</span>
+          <span class="bg-brandPink text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Backyard Weddings</span>
+          <span class="bg-brandYellow text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Naming Days</span>
+          <span class="bg-brandLavender text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Pub Wakes</span>
+          <span class="bg-brandOrange text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Vow Renewals</span>
+          <span class="bg-brandGreen text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Beach Farewells</span>
+          <span class="bg-brandPink text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Celebrations of Life</span>
+          <span class="bg-brandYellow text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Warehouse Parties</span>
+        </div>
+        <div class="flex gap-3 shrink-0 items-center pr-3">
+          <span class="bg-brandOrange text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Elopements</span>
+          <span class="bg-brandGreen text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Living Wakes</span>
+          <span class="bg-brandPink text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Backyard Weddings</span>
+          <span class="bg-brandYellow text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Naming Days</span>
+          <span class="bg-brandLavender text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Pub Wakes</span>
+          <span class="bg-brandOrange text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Vow Renewals</span>
+          <span class="bg-brandGreen text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Beach Farewells</span>
+          <span class="bg-brandPink text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Celebrations of Life</span>
+          <span class="bg-brandYellow text-brandDark px-4 py-2 rounded-full font-bold text-sm border-2 border-brandDark shadow-sm">Warehouse Parties</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Celebrations Section -->
+    <section id="celebrations" class="bg-brandPink border-brutal-b py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6">
+            <span class="bg-brandDark text-brandPink px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">
+              Joyful Ceremonies
+            </span>
+            <h2 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brandDark leading-none mb-6">
+              Celebrations
+            </h2>
+            <p class="text-lg sm:text-xl text-brandDark/90 leading-relaxed mb-6">
+              Weddings, elopements, vow renewals, and baby welcoming naming days. Any couple, any family shape, any venue — from a cosy corner of a South Freo brewery to sunset cliffs over Bathers Beach.
+            </p>
+            <ul class="space-y-2.5 mb-8 font-medium text-brandDark">
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandDark text-white flex items-center justify-center text-xs">✓</span>
+                <span>Fully personalised scripts created from your actual interviews</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandDark text-white flex items-center justify-center text-xs">✓</span>
+                <span>All legal marriage paperwork (NOIM, certificates, registry) handled cleanly</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandDark text-white flex items-center justify-center text-xs">✓</span>
+                <span>Total freedom to include dogs, favorite vinyls, custom vows, or shots of tequila</span>
+              </li>
+            </ul>
+            <button onclick="openCeremonyModal('celebrations')" class="bg-brandDark text-white px-8 py-3.5 rounded-full font-bold text-base border-brutal shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+              Explore Wedding & Celebration Details
+            </button>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="bg-brandCream border-brutal rounded-3xl p-6 shadow-brutal-lg relative">
+              <div class="h-64 sm:h-80 rounded-2xl border-brutal bg-cover bg-center overflow-hidden relative" style="background-image: linear-gradient(to bottom, rgba(20,18,31,0.1), rgba(20,18,31,0.6)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80');">
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <span class="bg-brandYellow text-brandDark text-xs font-bold px-2.5 py-1 rounded-md border border-brandDark uppercase">Real Story</span>
+                  <h4 class="font-heading font-extrabold text-xl mt-1">Mia & Josh's Wharfside Vows</h4>
+                  <p class="text-sm opacity-90">"Alison made our 40 guests laugh until they cried, then got our marriage registered by Monday."</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mt-4">
+                <div class="bg-brandYellow p-3 rounded-xl border-brutal text-center">
+                  <div class="font-heading font-extrabold text-2xl">100+</div>
+                  <div class="text-xs font-bold">Weddings Sealed</div>
+                </div>
+                <div class="bg-brandGreen p-3 rounded-xl border-brutal text-center">
+                  <div class="font-heading font-extrabold text-2xl">5.0 ★</div>
+                  <div class="text-xs font-bold">Community Loved</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farewells Section -->
+    <section id="farewells" class="bg-brandBlue text-white border-brutal-b py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 order-2 lg:order-1">
+            <div class="bg-brandCream text-brandDark border-brutal rounded-3xl p-6 shadow-brutal-lg">
+              <div class="h-64 sm:h-80 rounded-2xl border-brutal bg-cover bg-center overflow-hidden relative" style="background-image: linear-gradient(to bottom, rgba(20,18,31,0.1), rgba(20,18,31,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80');">
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <span class="bg-brandGreen text-brandDark text-xs font-bold px-2.5 py-1 rounded-md border border-brandDark uppercase">Living Wake</span>
+                  <h4 class="font-heading font-extrabold text-xl mt-1">Frankie's Sunset Send-off</h4>
+                  <p class="text-sm opacity-90">"He was in the front row with a pint of stout, listening to his mates roast and toast him."</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mt-4">
+                <div class="bg-brandOrange text-brandDark p-3 rounded-xl border-brutal text-center">
+                  <div class="font-heading font-extrabold text-2xl">Heart-led</div>
+                  <div class="text-xs font-bold">Never Stuffy</div>
+                </div>
+                <div class="bg-brandLavender text-brandDark p-3 rounded-xl border-brutal text-center">
+                  <div class="font-heading font-extrabold text-2xl">Your Vibe</div>
+                  <div class="text-xs font-bold">Quiet or Loud</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 order-1 lg:order-2">
+            <span class="bg-brandYellow text-brandDark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block border border-brandDark">
+              Honest Send-offs
+            </span>
+            <h2 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-none mb-6">
+              Farewells & Living Wakes
+            </h2>
+            <p class="text-lg sm:text-xl text-white/90 leading-relaxed mb-6">
+              Funerals, memorial gatherings, and living wakes that sound and feel like the individual they honor. Grief is real, but so is laughter, bad dad jokes, music, and the celebration of a life lived out loud.
+            </p>
+            <ul class="space-y-2.5 mb-8 font-medium text-white/95">
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xs font-bold">✓</span>
+                <span>Deep storytelling that actually captures their wit, quirks & passions</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xs font-bold">✓</span>
+                <span>Held anywhere meaningful: a surf club, bush property, pub room, or cemetery chapel</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-6 h-6 rounded-full bg-brandYellow text-brandDark flex items-center justify-center text-xs font-bold">✓</span>
+                <span>Living wakes where the guest of honor gets to hear how much they are loved right now</span>
+              </li>
+            </ul>
+            <button onclick="openCeremonyModal('farewells')" class="bg-brandYellow text-brandDark px-8 py-3.5 rounded-full font-bold text-base border-brutal shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+              Learn About Farewells
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Ceremony Vibe & Cost Estimator -->
+    <section id="estimator" class="py-16 lg:py-24 bg-brandCream border-brutal-b">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <span class="bg-brandOrange text-brandDark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block border-2 border-brandDark shadow-brutal mb-3">
+            Interactive Tool
+          </span>
+          <h2 class="font-heading font-extrabold text-4xl sm:text-5xl text-brandDark">
+            Ceremony Vibe & Cost Estimator
+          </h2>
+          <p class="text-lg text-brandDark/80 max-w-xl mx-auto mt-2">
+            Pick your ceremony parameters to see our recommended approach, timeline, and realistic transparent celebrancy investment.
+          </p>
+        </div>
+
+        <div class="bg-white border-brutal rounded-3xl p-6 sm:p-10 shadow-brutal-lg">
+          <!-- Step 1: Ceremony Type -->
+          <div class="mb-8">
+            <label class="block font-heading font-extrabold text-xl text-brandDark mb-3">
+              1. What kind of ceremony are you planning?
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="vibeTypeGrid">
+              <button type="button" onclick="selectType('wedding', 1250, 'Full Bespoke Wedding', 'Comprehensive story crafting, rehearsal, legal registry, PA sound setup, custom rituals.')" class="type-btn active bg-brandYellow border-brutal p-3.5 rounded-xl font-bold text-sm text-center shadow-brutal hover:scale-102 transition-all">
+                💍 Full Wedding
+              </button>
+              <button type="button" onclick="selectType('elopement', 750, 'Legals-Only / Elopement', 'Intimate, effortless, legals plus a heartfelt short vows exchange with your two witnesses.')" class="type-btn bg-brandCream border-brutal p-3.5 rounded-xl font-bold text-sm text-center hover:bg-brandYellow transition-all">
+                🌊 Legals / Elopement
+              </button>
+              <button type="button" onclick="selectType('farewell', 950, 'Celebration of Life / Funeral', 'Rich biography, music curation, coordinating family speakers, delivery with warmth & calm dignity.')" class="type-btn bg-brandCream border-brutal p-3.5 rounded-xl font-bold text-sm text-center hover:bg-brandYellow transition-all">
+                🕯️ Farewell / Funeral
+              </button>
+              <button type="button" onclick="selectType('living-wake', 850, 'Living Wake / Naming Day', 'Celebratory gathering filled with toasts, laughs, shared history and vibrant memories.')" class="type-btn bg-brandCream border-brutal p-3.5 rounded-xl font-bold text-sm text-center hover:bg-brandYellow transition-all">
+                🍻 Living Wake / Party
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Location Vibe -->
+          <div class="mb-8">
+            <label class="block font-heading font-extrabold text-xl text-brandDark mb-3">
+              2. What is the location setting?
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="vibeLocationGrid">
+              <button type="button" onclick="selectLocation('freo-local', 0, 'Classic Freo / Pub / Coastal Park')" class="loc-btn active bg-brandPink text-brandDark border-brutal p-3 rounded-xl font-bold text-sm text-left shadow-brutal">
+                📍 Fremantle & Coastal Park
+                <span class="block text-xs font-normal opacity-80 mt-1">Local travel included</span>
+              </button>
+              <button type="button" onclick="selectLocation('perth-metro', 100, 'Greater Perth & Swan Valley')" class="loc-btn bg-brandCream text-brandDark border-brutal p-3 rounded-xl font-bold text-sm text-left hover:bg-brandPink transition-all">
+                🌿 Swan Valley / Hills / Metro
+                <span class="block text-xs font-normal opacity-80 mt-1">Includes travel across metro</span>
+              </button>
+              <button type="button" onclick="selectLocation('destination', 350, 'South West / Rottnest Island / WA Destination')" class="loc-btn bg-brandCream text-brandDark border-brutal p-3 rounded-xl font-bold text-sm text-left hover:bg-brandPink transition-all">
+                🏝️ Rottnest / South West / Dunsborough
+                <span class="block text-xs font-normal opacity-80 mt-1">Covers ferry/interstate road transit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div class="bg-brandYellow/30 border-brutal rounded-2xl p-6 mt-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-brandDark/20 pb-4 mb-4">
+              <div>
+                <span class="text-xs uppercase font-extrabold tracking-wider bg-brandDark text-brandYellow px-2.5 py-1 rounded">Estimated Investment</span>
+                <h3 id="estimatorTitle" class="font-heading font-extrabold text-2xl text-brandDark mt-1">Full Bespoke Wedding</h3>
+              </div>
+              <div class="text-left sm:text-right">
+                <div class="text-3xl sm:text-4xl font-heading font-extrabold text-brandDark" id="estimatedPrice">$1,250 AUD</div>
+                <span class="text-xs text-brandDark/70 font-semibold">Includes GST & all Commonwealth legal filings</span>
+              </div>
+            </div>
+            
+            <p id="estimatorDesc" class="text-brandDark text-sm sm:text-base leading-relaxed mb-4">
+              Comprehensive story crafting, rehearsal, legal registry, PA sound setup, custom rituals.
+            </p>
+
+            <div class="flex flex-wrap gap-2 text-xs font-bold">
+              <span class="bg-white border border-brandDark px-2.5 py-1 rounded-md">✓ State-of-the-art battery PA mic</span>
+              <span class="bg-white border border-brandDark px-2.5 py-1 rounded-md">✓ Uncapped script revisions</span>
+              <span class="bg-white border border-brandDark px-2.5 py-1 rounded-md">✓ Alison + Cam collaborative prep</span>
+            </div>
+          </div>
+
+          <div class="text-center mt-6">
+            <a href="#contact" class="btn btn-dark w-full sm:w-auto inline-block">
+              Check Date Availability with Us →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Not Your Usual Ceremony People -->
+    <section class="py-16 lg:py-24 bg-white border-brutal-b">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-2xl">
+          <span class="bg-brandGreen text-brandDark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block border border-brandDark mb-3">
+            Our Core Principles
+          </span>
+          <h2 class="font-heading font-extrabold text-4xl sm:text-5xl text-brandDark leading-tight">
+            Not your usual funeral and wedding people.
+          </h2>
+          <p class="text-lg text-brandDark/80 mt-3">
+            Most ceremonies feel like they were written in 1983 for someone else's grandparents. We do things differently.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <!-- Card 1 -->
+          <div class="bg-brandYellow border-brutal rounded-3xl p-7 shadow-brutal flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-brandDark text-brandYellow flex items-center justify-center font-heading font-extrabold text-2xl mb-4 border border-brandDark">
+                1
+              </div>
+              <h3 class="font-heading font-extrabold text-2xl text-brandDark mb-3">Real, not stuffy</h3>
+              <p class="text-brandDark/90 text-base leading-relaxed">
+                We talk like actual humans who live in the 21st century. Swearing, deep belly laughs, raw nostalgia, and genuine tears are all welcomed with open arms.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold uppercase tracking-widest text-brandDark/70">No droning scripts</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-brandGreen border-brutal rounded-3xl p-7 shadow-brutal flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-brandDark text-brandGreen flex items-center justify-center font-heading font-extrabold text-2xl mb-4 border border-brandDark">
+                2
+              </div>
+              <h3 class="font-heading font-extrabold text-2xl text-brandDark mb-3">Every kind of life</h3>
+              <p class="text-brandDark/90 text-base leading-relaxed">
+                Proudly LGBTQIA+ affirming, multicultural, blended family celebrating, and welcoming of all philosophies. Whatever your community looks like, you belong.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold uppercase tracking-widest text-brandDark/70">Radical hospitality</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-brandOrange border-brutal rounded-3xl p-7 shadow-brutal flex flex-col justify-between hover:translate-y-[-4px] transition-transform">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-brandDark text-brandOrange flex items-center justify-center font-heading font-extrabold text-2xl mb-4 border border-brandDark">
+                3
+              </div>
+              <h3 class="font-heading font-extrabold text-2xl text-brandDark mb-3">Totally yours</h3>
+              <p class="text-brandDark/90 text-base leading-relaxed">
+                Your playlist, your favorite drink, your private jokes, your chosen family. We build every second around you from scratch, never around an inflexible template.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold uppercase tracking-widest text-brandDark/70">Bespoke from day one</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Meet Alison & Cam -->
+    <section id="about" class="bg-brandOrange border-brutal-b py-16 lg:py-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Fun Duo Illustration -->
+          <div class="lg:col-span-5">
+            <div class="flex gap-4">
+              <!-- Alison Card -->
+              <div class="flex-1 bg-brandYellow border-brutal rounded-t-[120px] rounded-b-2xl p-5 pt-8 shadow-brutal flex flex-col justify-between h-[300px] text-center">
+                <div class="w-16 h-16 mx-auto rounded-full bg-brandPink border-2 border-brandDark flex items-center justify-center text-2xl">
+                  🎙️
+                </div>
+                <div>
+                  <h4 class="font-heading font-extrabold text-2xl text-brandDark">Alison</h4>
+                  <p class="text-xs font-bold text-brandDark/80 uppercase">Civil Celebrant</p>
+                </div>
+                <div class="text-xs font-medium bg-white/80 py-1.5 px-2 rounded-lg border border-brandDark">
+                  The Voice & Legal Heart
+                </div>
+              </div>
+
+              <!-- Cam Card -->
+              <div class="flex-1 bg-brandPink border-brutal rounded-t-2xl rounded-b-[120px] p-5 pb-8 shadow-brutal flex flex-col justify-between h-[300px] mt-6 text-center">
+                <div class="text-xs font-medium bg-white/80 py-1.5 px-2 rounded-lg border border-brandDark">
+                  The Creative & Vibes
+                </div>
+                <div>
+                  <h4 class="font-heading font-extrabold text-2xl text-brandDark">Cam</h4>
+                  <p class="text-xs font-bold text-brandDark/80 uppercase">Design & Planning</p>
+                </div>
+                <div class="w-16 h-16 mx-auto rounded-full bg-brandGreen border-2 border-brandDark flex items-center justify-center text-2xl">
+                  ✨
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bio text -->
+          <div class="lg:col-span-7">
+            <span class="bg-brandDark text-brandYellow px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider inline-block mb-4 border border-brandDark">
+              Fremantle Locals
+            </span>
+            <h2 class="font-heading font-extrabold text-4xl sm:text-5xl text-brandDark leading-none mb-6">
+              A family team from Freo.
+            </h2>
+            <p class="text-lg sm:text-xl text-brandDark/90 leading-relaxed mb-4">
+              <strong>Alison</strong> is a Commonwealth-registered civil celebrant who has officiated hundreds of milestone life ceremonies across Western Australia. She brings poise, warmth, and the rare ability to make any room feel instantly comfortable.
+            </p>
+            <p class="text-lg sm:text-xl text-brandDark/90 leading-relaxed mb-6">
+              <strong>Cam</strong> oversees the pacing, visual design, audio logistics, and fresh ideas. Together, we remove the stress so you get a ceremony that people actually want to attend.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#contact" class="btn btn-dark">
+                Say Hello in Person
+              </a>
+              <button onclick="copyEmail()" class="btn bg-brandCream text-brandDark flex items-center gap-2">
+                <span id="copyIcon">📋</span>
+                <span id="copyText">Copy Email Address</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Clear About Funerals Section -->
+    <section id="clarity" class="bg-brandDark text-white py-16 lg:py-20 border-brutal-b">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="bg-brandDark border-2 border-white/20 rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-brandYellow/10 pointer-events-none"></div>
+          
+          <div class="inline-flex items-center gap-2 bg-brandYellow text-brandDark px-3 py-1 rounded-full font-bold text-xs uppercase tracking-wider mb-4">
+            <span>💡 Honest Industry Truth</span>
+          </div>
+
+          <h3 class="font-heading font-extrabold text-3xl sm:text-4xl text-brandYellow mb-4">
+            Clear, honest transparency about funerals.
+          </h3>
+          <p class="text-base sm:text-lg text-white/90 leading-relaxed mb-6">
+            In Australia, families are often confused about who does what when someone dies. We keep it completely transparent:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+              <span class="text-brandPink font-heading font-extrabold text-xl block mb-2">1. What We Do (The Ceremony)</span>
+              <p class="text-sm text-white/80 leading-relaxed">
+                We craft, curate, rehearse, and lead the human ceremony. We meet with family, weave stories, coordinate music and audio, and guide the room. You pay us our flat fee with no retail product markups.
+              </p>
+            </div>
+            <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+              <span class="text-brandGreen font-heading font-extrabold text-xl block mb-2">2. What The Funeral Director Does</span>
+              <p class="text-sm text-white/80 leading-relaxed">
+                A licensed mortuary director looks after the physical care of the deceased, transport, death certificates, and the cemetery/cremation bookings. They quote and invoice you directly for those exact logistics.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-sm text-brandCream/70 border-t border-white/10 pt-4">
+            This means you get an unhurried, genuinely personal service without feeling pressured into buying velvet-lined coffins or packages you never asked for.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Booking Form -->
+    <section id="contact" class="bg-brandYellow py-16 lg:py-24 border-brutal-b">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <h2 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brandDark leading-none mb-4">
+            Let's make it unforgettable.
+          </h2>
+          <p class="text-lg sm:text-xl text-brandDark/85 max-w-lg mx-auto">
+            No pressure, no hard sell. Just tell us what you're thinking, and we'll reply with honest advice and date availability.
+          </p>
+        </div>
+
+        <div class="bg-white border-brutal rounded-3xl p-6 sm:p-10 shadow-brutal-xl">
+          <form id="contactForm" onsubmit="submitForm(event)">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="userName" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Your Name(s) *</label>
+                <input type="text" id="userName" required placeholder="e.g. Charlie & Dylan" class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base">
+              </div>
+              <div>
+                <label for="userEmail" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Email Address *</label>
+                <input type="email" id="userEmail" required placeholder="charlie@example.com" class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label for="userPhone" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Phone Number</label>
+                <input type="tel" id="userPhone" placeholder="0400 000 000" class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base">
+              </div>
+              <div>
+                <label for="ceremonySelect" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Ceremony Style *</label>
+                <select id="ceremonySelect" required class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base">
+                  <option value="">Choose an option...</option>
+                  <option value="Wedding">Wedding Celebration</option>
+                  <option value="Elopement">Legals-Only / Elopement</option>
+                  <option value="Farewell">Funeral / Celebration of Life</option>
+                  <option value="Living Wake">Living Wake</option>
+                  <option value="Vow Renewal">Vow Renewal / Naming Day</option>
+                  <option value="Just curious">Just exploring ideas</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="ceremonyDate" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Ideal Date or Season & Rough Location</label>
+              <input type="text" id="ceremonyDate" placeholder="e.g. November 2026, South Beach or The Local Hotel" class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base">
+            </div>
+
+            <div class="mb-6">
+              <label for="userMessage" class="block font-heading font-extrabold text-sm text-brandDark mb-1.5">Tell us a little about your dream vibe</label>
+              <textarea id="userMessage" rows="4" placeholder="How do you want people to feel when they are standing there? What music, humor or memories are essential?" class="w-full bg-brandCream border-brutal rounded-xl px-4 py-3 text-base"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-brandPink text-brandDark font-heading font-extrabold text-lg py-4 rounded-full border-brutal shadow-brutal hover:shadow-brutal-hover hover:translate-x-0.5 hover:translate-y-0.5 transition-all">
+              Send Enquiry to Alison & Cam 🚀
+            </button>
+          </form>
+
+          <!-- Success Notification Card -->
+          <div id="formSuccessMessage" class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-brandGreen text-brandDark border-brutal rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+              ✓
+            </div>
+            <h3 class="font-heading font-extrabold text-3xl text-brandDark mb-2">Message Received!</h3>
+            <p class="text-brandDark/80 text-base max-w-md mx-auto mb-6">
+              Thanks so much for reaching out. We will check our dates and reply to your email within 24 hours.
+            </p>
+            <button onclick="resetForm()" class="btn btn-dark">
+              Send Another Note
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-sm font-bold text-brandDark/80 space-y-1">
+          <p>📞 Phone: <a href="tel:0400000000" class="underline hover:text-brandBlue">0400 000 000</a></p>
+          <p>✉️ Email: <a href="mailto:hello@fremantlelife.com.au" class="underline hover:text-brandBlue">hello@fremantlelife.com.au</a></p>
+          <p>📸 Instagram: <a href="#" class="underline hover:text-brandBlue">@fremantlelifeceremonies</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brandDark text-brandCream py-10 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left text-sm">
+      <div>
+        <div class="font-heading font-extrabold text-xl text-brandYellow mb-1">
+          Fremantle Life Ceremonies
+        </div>
+        <p class="text-brandCream/70">
+          Celebrations & Farewells · Fremantle & Perth, Western Australia
+        </p>
+      </div>
+
+      <div class="text-xs text-brandCream/60 space-y-1">
+        <p>Commonwealth Registered Civil Celebrant (A20491)</p>
+        <p>Proud Member of Australian Celebrant Association · Fully Insured</p>
+        <p>© 2026 Fremantle Life Ceremonies. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Service Deep Dive Modal -->
+  <div id="serviceModal" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
+    <div class="bg-white border-brutal rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto shadow-brutal-xl relative">
+      <button onclick="closeCeremonyModal()" aria-label="Close modal" class="absolute top-5 right-5 w-10 h-10 rounded-full border-brutal bg-brandYellow flex items-center justify-center font-bold text-lg hover:bg-brandPink transition-colors">
+        ✕
+      </button>
+
+      <div id="modalContent">
+        <!-- Dynamically injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Drawer Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    menuToggle.addEventListener('click', () => {
+      toggleDrawer();
+    });
+
+    function toggleDrawer() {
+      mobileDrawer.classList.toggle('hidden');
+    }
+
+    // Interactive Estimator Logic
+    let currentBasePrice = 1250;
+    let currentLocationSurcharge = 0;
+
+    function selectType(typeKey, price, title, desc) {
+      currentBasePrice = price;
+      
+      // Update UI buttons
+      document.querySelectorAll('#vibeTypeGrid .type-btn').forEach(btn => {
+        btn.classList.remove('bg-brandYellow', 'shadow-brutal');
+        btn.classList.add('bg-brandCream');
+      });
+      event.currentTarget.classList.add('bg-brandYellow', 'shadow-brutal');
+      event.currentTarget.classList.remove('bg-brandCream');
+
+      document.getElementById('estimatorTitle').textContent = title;
+      document.getElementById('estimatorDesc').textContent = desc;
+      updateTotalDisplay();
+    }
+
+    function selectLocation(locKey, surcharge, locName) {
+      currentLocationSurcharge = surcharge;
+
+      // Update UI buttons
+      document.querySelectorAll('#vibeLocationGrid .loc-btn').forEach(btn => {
+        btn.classList.remove('bg-brandPink', 'shadow-brutal');
+        btn.classList.add('bg-brandCream');
+      });
+      event.currentTarget.classList.add('bg-brandPink', 'shadow-brutal');
+      event.currentTarget.classList.remove('bg-brandCream');
+
+      updateTotalDisplay();
+    }
+
+    function updateTotalDisplay() {
+      const total = currentBasePrice + currentLocationSurcharge;
+      document.getElementById('estimatedPrice').textContent = '$' + total.toLocaleString('en-AU') + ' AUD';
+    }
+
+    // Modal Details Logic
+    const ceremonyDetails = {
+      celebrations: {
+        title: "Weddings, Elopements & Life Celebrations",
+        badge: "Weddings & Joy",
+        badgeColor: "bg-brandPink",
+        bodyHtml: `
+          <p class="text-base text-brandDark/90 mb-4">
+            Whether you want a secret two-witness elopement on Rottnest or a 150-person party in an old Freo woolshed, Alison works with you to build a ceremony that feels completely natural.
+          </p>
+          <h4 class="font-heading font-extrabold text-lg text-brandDark mb-2">What is included:</h4>
+          <ul class="list-disc pl-5 space-y-1.5 text-sm text-brandDark/85 mb-4">
+            <li><strong>All Legal Paperwork:</strong> Completion and secure lodging of the Notice of Intended Marriage (NOIM) at least 1 month prior, plus your official Registry Certificate.</li>
+            <li><strong>Couple Interview & Story Crafting:</strong> No questionnaires that feel like homework. Just an easy yarn over a drink where we extract your favorite memories.</li>
+            <li><strong>Rehearsal:</strong> On-site or over video to make sure you both feel confident, calm and ready.</li>
+            <li><strong>Top Quality Sound:</strong> Professional battery-powered PA system and wireless microphones for vows and ceremony music.</li>
+          </ul>
+          <p class="text-sm text-brandDark/80 bg-brandCream p-3.5 rounded-xl border border-brandDark">
+            💡 <strong>Did you know?</strong> In Australia, all you legally need to say to be married takes about 90 seconds. The rest of the ceremony is 100% up to you.
+          </p>
+        `
+      },
+      farewells: {
+        title: "Funerals, Celebrations of Life & Living Wakes",
+        badge: "Farewells with Heart",
+        badgeColor: "bg-brandBlue text-white",
+        bodyHtml: `
+          <p class="text-base text-brandDark/90 mb-4">
+            A farewell ceremony should sound like the person who lived. If they loved cricket, craft beer, cold swims, or David Bowie, that should be front and center.
+          </p>
+          <h4 class="font-heading font-extrabold text-lg text-brandDark mb-2">How we work with your family:</h4>
+          <ul class="list-disc pl-5 space-y-1.5 text-sm text-brandDark/85 mb-4">
+            <li><strong>Family Sit-Down:</strong> We spend unhurried hours listening to their story, collecting anecdotes, favourite sayings, and defining chapters.</li>
+            <li><strong>Full Ceremony Curation:</strong> We guide family speakers, read tributes on behalf of anyone who finds it too hard on the day, and time music seamlessly.</li>
+            <li><strong>Living Wakes:</strong> For people facing terminal illness who choose to throw their party while they can still laugh with their friends and share a drink.</li>
+            <li><strong>Any Venue:</strong> We frequently officiate in backyard marquees, local yacht clubs, surf lifesaving clubs, bush retreats, and traditional chapels.</li>
+          </ul>
+          <p class="text-sm text-brandDark/80 bg-brandYellow/30 p-3.5 rounded-xl border border-brandDark">
+            🌿 <strong>Total Peace of Mind:</strong> We coordinate directly with your funeral director so the day runs smoothly without you having to manage logistics.
+          </p>
+        `
+      }
+    };
+
+    function openCeremonyModal(type) {
+      const data = ceremonyDetails[type];
+      const container = document.getElementById('modalContent');
+      container.innerHTML = `
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 ${data.badgeColor} border border-brandDark">
+          ${data.badge}
+        </span>
+        <h3 class="font-heading font-extrabold text-2xl sm:text-3xl text-brandDark mb-4">
+          ${data.title}
+        </h3>
+        ${data.bodyHtml}
+        <div class="mt-6 pt-4 border-t border-brandDark/10 flex justify-end gap-3">
+          <button onclick="closeCeremonyModal()" class="px-5 py-2.5 rounded-full font-bold text-sm border border-brandDark hover:bg-brandCream">
+            Close
+          </button>
+          <a href="#contact" onclick="closeCeremonyModal()" class="btn btn-dark text-sm">
+            Enquire About This
+          </a>
+        </div>
+      `;
+      document.getElementById('serviceModal').classList.remove('hidden');
+      document.getElementById('serviceModal').classList.add('flex');
+    }
+
+    function closeCeremonyModal() {
+      document.getElementById('serviceModal').classList.add('hidden');
+      document.getElementById('serviceModal').classList.remove('flex');
+    }
+
+    // Close modal on background click
+    document.getElementById('serviceModal').addEventListener('click', (e) => {
+      if (e.target.id === 'serviceModal') {
+        closeCeremonyModal();
+      }
+    });
+
+    // Form Handling
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('contactForm').classList.add('hidden');
+      document.getElementById('formSuccessMessage').classList.remove('hidden');
+    }
+
+    function resetForm() {
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactForm').classList.remove('hidden');
+      document.getElementById('formSuccessMessage').classList.add('hidden');
+    }
+
+    // Copy Email To Clipboard
+    function copyEmail() {
+      const email = 'hello@fremantlelife.com.au';
+      const tempInput = document.createElement('input');
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      const copyText = document.getElementById('copyText');
+      const copyIcon = document.getElementById('copyIcon');
+      copyText.textContent = 'Copied to Clipboard!';
+      copyIcon.textContent = '✓';
+
+      setTimeout(() => {
+        copyText.textContent = 'Copy Email Address';
+        copyIcon.textContent = '📋';
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
